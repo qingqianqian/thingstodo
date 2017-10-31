@@ -14,6 +14,9 @@ export default (s = {}, a) => {
     case 'artist':
       return { ...s, artist: a.artist };
 
+    case 'postThing':
+      return { ...s, postedThing: a.postedThing };
+
     default:
       return s;
   }

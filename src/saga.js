@@ -11,9 +11,23 @@ function* getArtist(a) {
   yield put({ type: 'artist', artist });
 }
 
+const postData = (url, data) => {
+  return fetch(url, {
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+}
+
+function* postThing(a) {
+  const postedThing = yield postData(`http://localhost:3000/addthing`, a.data).then(r => r.json());
+  yield put({ type: 'postThing', postedThing });
+}
+
 export function* watch() {
   yield [
     takeEvery('get_artists', getArtists),
-    takeEvery('get_artist', getArtist)
+    takeEvery('get_artist', getArtist),
+    takeEvery('save', postThing)
   ];
 }
