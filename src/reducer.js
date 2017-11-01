@@ -17,6 +17,9 @@ export default (s = {}, a) => {
     case 'postThing':
       return { ...s, postedThing: a.postedThing };
 
+    case 'postAllThings':
+      return { ...s, saved: true };
+
     default:
       return s;
   }

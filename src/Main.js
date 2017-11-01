@@ -4,10 +4,14 @@ import './App.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import data from './data.json'
-import { filteredList, key } from './selectors';
+import { filteredList, key, list } from './selectors';
 
 class Main extends React.Component {
-
+  componentWillReceiveProps(p) {
+    if (!this.props.saved && p.saved)
+      alert('saved');
+  }
+  
   componentWillMount(){
     console.log('aa')
     this.props.dispatch({type:'load', ad: data});
@@ -21,6 +25,9 @@ class Main extends React.Component {
     this.props.dispatch({type:'save', data: x})
   }
 
+  onClickToSaveAll = () => {
+    this.props.dispatch({type:'saveAll', data: this.props.listAll});
+  }
 
   change = e => this.props.dispatch({ type: 'key', key: e.target.value })
 
@@ -29,13 +36,16 @@ class Main extends React.Component {
     const l = this.props.asd || {};
     const l1 = Object.keys(l).map(x => l[x]);
 
+    //const listAll = this.props.listAll || {};
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Link to="/music">
-            <h1 className="App-title">Welcome to React</h1>
+            <h1 className="App-title">Welcome to React!Click to go to artists</h1>
           </Link>  
+          <button name="save all" onClick={this.onClickToSaveAll}>Save All</button>
         </header>
         <div>
           input: <input value={p.searchKey} onChange={this.change}/>
@@ -58,4 +68,9 @@ class Main extends React.Component {
   }
 }
 
-export default connect(s=>({asd: filteredList(s), searchKey: key(s)}))(Main);
+export default connect(s => ({
+  asd: filteredList(s),
+  searchKey: key(s),
+  listAll: list(s),
+  saved: s.saved
+}))(Main);
