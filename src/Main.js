@@ -14,7 +14,12 @@ class Main extends React.Component {
   
   componentWillMount(){
     console.log('aa')
-    this.props.dispatch({type:'load', ad: data});
+    //Get from DB first
+    this.props.dispatch({ type: 'load', ad: this.props.asd });
+
+    if (!((this.props.asd||[]).length > 0)) {
+      this.props.dispatch({ type: 'loadF', ad: data });
+    }  
   }
 
   whileOnClick = () => {
@@ -33,10 +38,14 @@ class Main extends React.Component {
 
   render() {
     const p = this.props;
-    const l = this.props.asd || {};
-    const l1 = Object.keys(l).map(x => l[x]);
+    const l = this.props.adf || {};  //from file
+    const lf = Object.keys(l).map(x => l[x]);
 
-    //const listAll = this.props.listAll || {};
+    let l1 = this.props.asd || [];
+
+    if (!l1.length > 0) {
+      l1 = lf; // DB empty
+    }
 
     return (
       <div className="App">
@@ -69,7 +78,8 @@ class Main extends React.Component {
 }
 
 export default connect(s => ({
-  asd: filteredList(s),
+  adf: filteredList(s),
+  asd: s.asd,
   searchKey: key(s),
   listAll: list(s),
   saved: s.saved

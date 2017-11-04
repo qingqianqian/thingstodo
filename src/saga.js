@@ -37,11 +37,18 @@ function* postAllThings(a) {
   yield put({ type: 'postAllThings', postedAllThings });
 }
 
+function* lodadFromDB(a) {
+  const asd = yield fetch('http://localhost:3000/load/').then(r => r.json());
+  yield put({ type: 'loadAll', asd });
+}
+
+
 export function* watch() {
   yield [
     takeEvery('get_artists', getArtists),
     takeEvery('get_artist', getArtist),
     takeEvery('save', postThing),
-    takeEvery('saveAll', postAllThings)
+    takeEvery('saveAll', postAllThings),
+    takeEvery('load', lodadFromDB)
   ];
 }

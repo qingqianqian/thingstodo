@@ -2,8 +2,13 @@
 
 export default (s = {}, a) => {
   switch (a.type) {
-    case 'load':
-      return { ...s, sd: a.ad };
+    //case 'load':
+    //  return { ...s, sd: a.ad };
+    case 'loadF':
+    return { ...s,  sd: a.ad };
+    
+    case 'loadAll':
+      return { ...s, asd: a.asd };
 
     case 'key':
       return { ...s, key: a.key };
