@@ -8,7 +8,7 @@ export default (s = {}, a) => {
     return { ...s,  sd: a.ad };
     
     case 'loadAll':
-      return { ...s, asd: a.asd };
+      return { ...s, asd: a.asd };    
 
     case 'key':
       return { ...s, key: a.key };
@@ -24,6 +24,9 @@ export default (s = {}, a) => {
 
     case 'postAllThings':
       return { ...s, saved: true };
+    
+    case 'edit':
+      return { ...s, selectedId: a.selectedId };
 
     default:
       return s;

@@ -30,6 +30,10 @@ class Main extends React.Component {
     this.props.dispatch({type:'save', data: x})
   }
 
+  onClickToEdit = x => {    
+    this.props.history.push(`/edit/${x.num}`);
+  }
+
   onClickToSaveAll = () => {
     this.props.dispatch({type:'saveAll', data: this.props.listAll});
   }
@@ -64,11 +68,15 @@ class Main extends React.Component {
         <p className="App-intro">
         {l1.map((x, i) =>
           <div>
+            <div>{x.num} blablabla</div>  
             <div>{x.title}</div>
             <div>{x.quote}</div>
             <div>{x.text}</div>
             <div>{x.imgs.map(y => <img src={y} alt='alt' />)}</div>  
-            <div><button id={`${i}`} name='click' onClick={() => this.onClickToSave(x)}>Save to DB</button></div>
+            <div className="flexcontainer">
+                <button id={`${i}`} name='click' onClick={() => this.onClickToSave(x)}>Save to DB</button>                
+                <button id={`edit${i}`} name={`edit${i}`} onClick={()=>this.onClickToEdit(x)}>Edit</button>
+            </div>
           </div>
         )}
         </p>
