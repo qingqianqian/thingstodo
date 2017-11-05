@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import data from './data.json'
+//import data from './data.json'
+import actionCreator from './actions';
 import { filteredList, key, list } from './selectors';
 
 class Main extends React.Component {
@@ -15,11 +16,13 @@ class Main extends React.Component {
   componentWillMount(){
     console.log('aa')
     //Get from DB first
-    this.props.dispatch({ type: 'load', ad: this.props.asd });
+    // this.props.dispatch({ type: 'load', ad: this.props.asd });
 
-    if (!((this.props.asd||[]).length > 0)) {
-      this.props.dispatch({ type: 'loadF', ad: data });
-    }  
+    // if (!((this.props.asd||[]).length > 0)) {
+    //   this.props.dispatch({ type: 'loadF', ad: data });
+    // }  
+
+    this.props.getThings();
   }
 
   whileOnClick = () => {
@@ -91,4 +94,4 @@ export default connect(s => ({
   searchKey: key(s),
   listAll: list(s),
   saved: s.saved
-}))(Main);
+}), actionCreator)(Main);

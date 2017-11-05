@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const things = s => s.asd || s.sd || {};
+export const things = s => s.asd || s.sd || s.things || {};
 export const key = s => s.key || '';
 export const selectedId = s => s.selectedId || ''
 
