@@ -9,7 +9,7 @@ import Edit from './Edit';
 export default () =>
 
   <Switch>
-    <Route exact path='/' component={Main} />
+    <Route exact path='/' component={Main} /> 
     <Route path='/music' component={Music} />
     <Route path='/artist/:name' component={Artist} />
     <Route path='/edit/:id' component={Edit} />
