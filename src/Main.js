@@ -58,7 +58,7 @@ class Main extends React.Component {
           <Link to="/music">
             <h1 className="App-title">Welcome to React!Click to go to artists</h1>
           </Link>  
-          <button name="save all" onClick={this.onClickToSaveAll}>Save All</button>
+          <button name="save all" onClick={this.onClickToSaveAll}>Save All to DB</button>
         </header>
         <div>
           input: <input value={p.searchKey} onChange={this.change}/>
