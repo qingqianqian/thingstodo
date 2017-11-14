@@ -6,6 +6,8 @@ import Music from './Music';
 import Artist from './Artist';
 import Edit from './Edit';
 
+import Try from './TryReact';
+
 export default () =>
 
   <Switch>
@@ -13,4 +15,6 @@ export default () =>
     <Route path='/music' component={Music} />
     <Route path='/artist/:name' component={Artist} />
     <Route path='/edit/:id' component={Edit} />
+
+    <Route path='/test' component={Try} />
   </Switch>

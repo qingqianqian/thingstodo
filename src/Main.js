@@ -18,6 +18,7 @@ class Main extends React.Component {
     this.props.dispatch({ type: 'load', ad: this.props.asd });
 
     if (!((this.props.asd||[]).length > 0)) {
+      console.log('load from file')
       this.props.dispatch({ type: 'loadF', ad: data });
     }  
   }
