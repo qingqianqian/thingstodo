@@ -5,6 +5,7 @@ import Main from './Main';
 import Music from './Music';
 import Artist from './Artist';
 import Edit from './Edit';
+import StripeSimple from './StripeSimple';
 
 import Try from './TryReact';
 
@@ -15,6 +16,7 @@ export default () =>
     <Route path='/music' component={Music} />
     <Route path='/artist/:name' component={Artist} />
     <Route path='/edit/:id' component={Edit} />
+    <Route path='/simplecheckout' component={StripeSimple} />
 
     <Route path='/test' component={Try} />
   </Switch>
